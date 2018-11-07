@@ -14,7 +14,7 @@ export class StartMenuComponent implements OnInit {
   }
 
   initSocket (): void {
-    this.wsService.initSocket()
+    this.wsService.initSocket();
   }
 
 }

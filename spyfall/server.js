@@ -19,10 +19,14 @@ const io = socketIO(server);
 io.on('connection', (socket) => {
   console.log('New connection');
 
+  socket.on('create', (room) => {
+    socket.join(room);
+    console.log(`A user has joined room "${room}".`)
+  })
+
   socket.on('disconnect', () => {
     console.log('Connection ended');
   })
-
 })
 
 server.listen(port, () => {
