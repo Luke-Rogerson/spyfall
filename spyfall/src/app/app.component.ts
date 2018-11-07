@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'spyfall-client';
+
+  private socket;
+
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.socket = io('http://localhost:3000');
+    // console.log(io);
+
+  }
+
+  title = 'spyfall';
 }
