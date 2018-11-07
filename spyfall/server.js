@@ -17,10 +17,10 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 io.on('connection', (socket) => {
-  console.log('New user connected');
+  console.log('New connection');
 
   socket.on('disconnect', () => {
-    console.log('A user has left');
+    console.log('Connection ended');
   })
 
 })

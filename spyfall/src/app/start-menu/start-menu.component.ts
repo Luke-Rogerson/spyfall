@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from '../websocket.service';
 
 @Component({
   selector: 'app-start-menu',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
+  }
+
+  initSocket (): void {
+    this.wsService.initSocket()
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as io from 'socket.io-client';
+// import * as io from 'socket.io-client';
+
 
 @Component({
   selector: 'app-root',
@@ -8,16 +9,14 @@ import * as io from 'socket.io-client';
 })
 export class AppComponent {
 
-  private socket;
+  // private socket;
 
   constructor() {
   }
 
-  ngOnInit() {
-    this.socket = io('http://localhost:3000');
-    // console.log(io);
-
-  }
+  // ngOnInit() {
+  //   this.socket = io('http://localhost:3000');
+  // }
 
   title = 'spyfall';
 }
