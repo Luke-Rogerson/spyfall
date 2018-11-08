@@ -8,13 +8,15 @@ import { WebsocketService } from '../websocket.service';
 })
 export class JoinGameMenuComponent implements OnInit {
 
+  status: boolean = false;
+
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
   }
 
   joinGame(name, id): void {
-    this.wsService.gameDoesNotExist();
+    this.checkIfGameExists()
     const data = {
       name: name,
       id: id
@@ -28,6 +30,7 @@ export class JoinGameMenuComponent implements OnInit {
 
   checkIfGameExists(): void {
     this.wsService.gameDoesNotExist();
+    // this.status = !this.status;   This is to hide and show a warning message
   }
 
 }

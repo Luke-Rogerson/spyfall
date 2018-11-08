@@ -3,4 +3,6 @@
   <input #id name="access-code" placeholder="Enter game code">
   <button type="button" (click)="joinGame(name.value, id.value)">JOIN</button>
 </form>
-  <button routerLink="/" (click)="disconnectSocket()">BACK</button>
+<button routerLink="/" (click)="disconnectSocket()">BACK</button>
+<!-- <h6 [ngClass]="status ? 'warning-hide' : 'warning-show'">Sorry, that game doesn't exist! Try again...</h6>
+Hide and show a warning message -->

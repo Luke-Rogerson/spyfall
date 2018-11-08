@@ -31,9 +31,8 @@ export class WebsocketService {
     this.socket.disconnect();
   }
 
-  gameDoesNotExist (): void {
+  gameDoesNotExist (): void { // Check when joining a game
     this.socket.on('message', (data) => {
-      console.log(data);
       return;
     })
   }

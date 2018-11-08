@@ -1,5 +1,5 @@
 <form>
 <input #name name="name" placeholder="Enter your name">
-<button type="button" (click)="createGame(name.value)">CREATE</button>
+<button routerLink="/lobby" type="button" (click)="createGame(name.value)">CREATE</button>
 </form>
 <button routerLink="/" (click)="disconnectSocket()">BACK</button>
