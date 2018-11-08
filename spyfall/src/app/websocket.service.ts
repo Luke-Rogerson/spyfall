@@ -16,11 +16,11 @@ export class WebsocketService {
   }
 
   initSocket (): void {
-    this.socket = io('http://localhost:3000')
+    this.socket = io.connect('http://localhost:3000')
   }
 
-  createRoom(id: number): void {
-    this.socket.emit('create', id);
+  createRoom(data: object): void {
+    this.socket.emit('create', data);
   }
 
 }

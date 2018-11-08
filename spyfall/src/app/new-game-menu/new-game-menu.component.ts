@@ -8,12 +8,17 @@ import { WebsocketService } from '../websocket.service';
 })
 export class NewGameMenuComponent {
 
+ // inputName : string = ''; ngModel?
+
   constructor(private wsService: WebsocketService) {
   }
 
-  joinRoom (): void {
-    const id = parseInt(Math.random().toString().slice(2,6))
-    this.wsService.createRoom(id);
+  joinRoom(name): void {
+    const data = {
+      name: name,
+      id: parseInt(Math.random().toString().slice(2, 6))
+    }
+    this.wsService.createRoom(data);
   }
 
 }

@@ -12,16 +12,18 @@ const port = process.env.PORT || 3000;
 //   res.sendFile(path.join(__dirname, 'dist/spyfall-client/index.html'))
 // })
 
-const server = http.createServer(app);
+// -----------------------------------------------
 
+const server = http.createServer(app);
 const io = socketIO(server);
+const rooms = [];
 
 io.on('connection', (socket) => {
   console.log('New connection');
 
-  socket.on('create', (room) => {
-    socket.join(room);
-    console.log(`A user has joined room "${room}".`)
+  socket.on('create', (data) => {
+    socket.join(data.id);
+    console.log(`${data.name} has joined room "${data.id}".`)
   })
 
   socket.on('disconnect', () => {
