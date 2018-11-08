@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { GameInfoComponent } from './Game-Components/game-info/game-info.component';
-import { PlayerListComponent } from './Game-Components/player-list/player-list.component';
+import { PlayerListComponent } from './player-list/player-list.component';
 import { LocationListComponent } from './Game-Components/location-list/location-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StartMenuComponent } from './start-menu/start-menu.component';
