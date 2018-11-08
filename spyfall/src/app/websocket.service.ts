@@ -37,4 +37,12 @@ export class WebsocketService {
     })
   }
 
+  getRoomID (): void {
+    this.socket.on('roomID', (roomID) => console.log(roomID));
+  }
+
+  getAllCurrentPlayers(): void {
+    this.socket.on('currentPlayers', (players) => console.log(players))
+  }
+
 }

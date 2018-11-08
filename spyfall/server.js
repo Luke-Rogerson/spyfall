@@ -31,6 +31,8 @@ io.on('connection', (socket) => {
     rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
     console.log('ROOMS NOW: ', rooms);
+    socket.emit('roomID', data.id);
+    socket.emit('currentPlayers', {players: rooms[data.id]});
   });
 
   socket.on('join', (data) => {
@@ -45,6 +47,7 @@ io.on('connection', (socket) => {
     rooms[data.id] = [...rooms[data.id], data.name];
     console.log(`${data.name} has joined room "${data.id}".`);
     console.log('ROOMS NOW: ', rooms);
+    socket.emit('currentPlayers', {players: rooms[data.id]});
   })
 
   socket.on('disconnect', () => {
