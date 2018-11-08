@@ -35,8 +35,14 @@ io.on('connection', (socket) => {
   });
 
   socket.on('join', (data) => {
+
+    if (!rooms.hasOwnProperty(data.id)) {
+      console.log(`${data.id} doesn't exist!`);
+      return;
+    }
+
     socket.join(data.id);
-    rooms[data.id] = [...rooms[data.id],data.name];
+    rooms[data.id] = [...rooms[data.id], data.name];
     console.log(`${data.name} has joined room "${data.id}".`);
     console.log('ROOMS NOW: ', rooms);
   })
