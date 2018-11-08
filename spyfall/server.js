@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
   socket.on('join', (data) => {
 
     if (!rooms.hasOwnProperty(data.id)) {
+      socket.emit('message', 'That game does not exist. Try again')
       console.log(`${data.id} doesn't exist!`);
       return;
     }

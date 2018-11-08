@@ -31,4 +31,11 @@ export class WebsocketService {
     this.socket.disconnect();
   }
 
+  gameDoesNotExist (): void {
+    this.socket.on('message', (data) => {
+      console.log(data);
+      return;
+    })
+  }
+
 }

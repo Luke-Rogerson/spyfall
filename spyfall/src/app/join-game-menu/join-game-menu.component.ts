@@ -14,6 +14,7 @@ export class JoinGameMenuComponent implements OnInit {
   }
 
   joinGame(name, id): void {
+    this.wsService.gameDoesNotExist();
     const data = {
       name: name,
       id: id
@@ -23,6 +24,10 @@ export class JoinGameMenuComponent implements OnInit {
 
   disconnectSocket(): void {
     this.wsService.disconnectSocket();
+  }
+
+  checkIfGameExists(): void {
+    this.wsService.gameDoesNotExist();
   }
 
 }
