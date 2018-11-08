@@ -1,4 +1,6 @@
 <h2>Players: </h2>
+<div *ngIf="players.length">
   <li *ngFor="let player of players">
-    {{player.name}}
+    {{player}}
   </li>
+</div>

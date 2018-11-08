@@ -8,8 +8,6 @@ import { WebsocketService } from '../websocket.service';
 })
 export class NewGameMenuComponent {
 
- // inputName : string = ''; ngModel?
-
   constructor(private wsService: WebsocketService) {
   }
 

@@ -1,21 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { Player } from '../player';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { WebsocketService } from '../websocket.service';
 
 @Component({
   selector: 'app-player-list',
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.css']
 })
-export class PlayerListComponent implements OnInit {
+export class PlayerListComponent implements OnInit, OnChanges {
 
-  // Will need to fetch from backend and store here
+  player: string;
+  players: any = [];
 
-  players: Player[] = [new Player('Luke'), new Player('Marco'), new Player('Charlie')];
-
-  constructor() { }
+  constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
-    console.log(this.players);
+    this.getAllCurrentPlayers();
   }
+
+  ngOnChanges() {
+    this.getAllCurrentPlayers();
+  }
+
+  getAllCurrentPlayers(): void {
+    this.wsService
+    .getAllCurrentPlayers().subscribe((res: any) => {
+      this.players = res.players;
+    })
+  }
+
 
 }

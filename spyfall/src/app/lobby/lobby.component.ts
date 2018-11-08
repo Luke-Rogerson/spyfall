@@ -6,28 +6,32 @@ import { WebsocketService } from '../websocket.service';
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.css']
 })
-export class LobbyComponent implements OnInit, OnChanges  {
+export class LobbyComponent implements OnInit {
+
+  roomID: number;
 
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
-    this.showAllCurrentPlayers();
-    this.getRoomID();
+    this.wsService
+    .getRoomID().subscribe((roomID: number) => {
+      this.roomID = roomID;
+    })
   }
 
-  ngOnChanges() {
-    this.showAllCurrentPlayers();
-  }
+  // ngOnChanges() {
+  //   this.showAllCurrentPlayers();
+  // }
 
   // -----------------
 
-  showAllCurrentPlayers() : void {
-    this.wsService.getAllCurrentPlayers();
-  }
+  // showAllCurrentPlayers() : void {
+  //   this.wsService.getAllCurrentPlayers();
+  // }
 
-  getRoomID() : void {
-    this.wsService.getRoomID();
-  }
+  // getRoomID() : void {
+  //   this.wsService.getRoomID();
+  // }
 
 
 }

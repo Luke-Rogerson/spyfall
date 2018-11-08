@@ -1,8 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
-// import { Observable } from 'rxjs/Observable';
-// import * as Rx from 'rxjs/Rx';
-// import { enviroment } from '../environments/environment'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,18 +29,26 @@ export class WebsocketService {
     this.socket.disconnect();
   }
 
-  gameDoesNotExist (): void { // Check when joining a game
+  gameDoesNotExist (): void { // Check if room exists when joining a game
     this.socket.on('message', (data) => {
       return;
     })
   }
 
-  getRoomID (): void {
-    this.socket.on('roomID', (roomID) => console.log(roomID));
+  getRoomID = () => {
+    return Observable.create((observer) => {
+      this.socket.on('roomID', (roomID) => {
+        observer.next(roomID);
+      })
+    })
   }
 
-  getAllCurrentPlayers(): void {
-    this.socket.on('currentPlayers', (players) => console.log(players))
+  getAllCurrentPlayers = () => {
+    return Observable.create((observer) => {
+      this.socket.on('currentPlayers', (player) => {
+        observer.next(player);
+      })
+    })
   }
 
 }
