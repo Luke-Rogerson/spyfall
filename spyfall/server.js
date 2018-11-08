@@ -23,7 +23,6 @@ const rooms = {};
 
 // }
 
-
 io.on('connection', (socket) => {
   console.log('New connection');
 
@@ -48,7 +47,6 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-
     console.log('Connection ended');
   });
 })

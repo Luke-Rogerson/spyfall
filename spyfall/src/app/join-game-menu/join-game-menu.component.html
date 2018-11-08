@@ -3,4 +3,4 @@
   <input #id name="access-code" placeholder="Enter game code">
   <button type="button" (click)="joinGame(name.value, id.value)">JOIN</button>
 </form>
-  <button routerLink="/">BACK</button>
+  <button routerLink="/" (click)="disconnectSocket()">BACK</button>

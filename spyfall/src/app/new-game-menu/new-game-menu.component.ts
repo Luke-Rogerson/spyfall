@@ -21,4 +21,8 @@ export class NewGameMenuComponent {
     this.wsService.createRoom(data);
   }
 
+  disconnectSocket(): void {
+    this.wsService.disconnectSocket();
+  }
+
 }

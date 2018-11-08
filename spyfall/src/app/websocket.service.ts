@@ -27,4 +27,8 @@ export class WebsocketService {
     this.socket.emit('join', data);
   }
 
+  disconnectSocket (): void {
+    this.socket.disconnect();
+  }
+
 }

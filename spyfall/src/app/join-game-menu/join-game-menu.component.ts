@@ -21,4 +21,8 @@ export class JoinGameMenuComponent implements OnInit {
     this.wsService.joinRoom(data);
   }
 
+  disconnectSocket(): void {
+    this.wsService.disconnectSocket();
+  }
+
 }

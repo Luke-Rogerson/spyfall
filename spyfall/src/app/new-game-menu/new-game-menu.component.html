@@ -2,4 +2,4 @@
 <input #name name="name" placeholder="Enter your name">
 <button type="button" (click)="createGame(name.value)">CREATE</button>
 </form>
-<button routerLink="/">BACK</button>
+<button routerLink="/" (click)="disconnectSocket()">BACK</button>
