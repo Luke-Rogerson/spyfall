@@ -13,7 +13,7 @@ export class NewGameMenuComponent {
   constructor(private wsService: WebsocketService) {
   }
 
-  joinRoom(name): void {
+  createGame(name): void {
     const data = {
       name: name,
       id: parseInt(Math.random().toString().slice(2, 6))

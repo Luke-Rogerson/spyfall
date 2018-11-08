@@ -16,19 +16,35 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 const io = socketIO(server);
-const rooms = [];
+const rooms = {};
+
+// const test = {
+//   '2776': ['Leo', 'Luke', ''],
+
+// }
+
 
 io.on('connection', (socket) => {
   console.log('New connection');
 
   socket.on('create', (data) => {
     socket.join(data.id);
+    rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
+    console.log('ROOMS NOW: ', rooms);
+  });
+
+  socket.on('join', (data) => {
+    socket.join(data.id);
+    rooms[data.id] = [...rooms[data.id],data.name];
+    console.log(`${data.name} has joined room "${data.id}".`);
+    console.log('ROOMS NOW: ', rooms);
   })
 
   socket.on('disconnect', () => {
+
     console.log('Connection ended');
-  })
+  });
 })
 
 server.listen(port, () => {

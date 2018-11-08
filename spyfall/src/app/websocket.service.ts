@@ -23,4 +23,8 @@ export class WebsocketService {
     this.socket.emit('create', data);
   }
 
+  joinRoom(data: object): void {
+    this.socket.emit('join', data);
+  }
+
 }
