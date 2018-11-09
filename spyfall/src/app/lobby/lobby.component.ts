@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { WebsocketService } from '../websocket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lobby',
@@ -8,30 +9,26 @@ import { WebsocketService } from '../websocket.service';
 })
 export class LobbyComponent implements OnInit {
 
-  roomID: number;
+  roomID: string;
 
-  constructor(private wsService: WebsocketService) { }
+  constructor(private wsService: WebsocketService, private router: Router) { }
 
   ngOnInit() {
     this.wsService
-    .getRoomID().subscribe((roomID: number) => {
+    .getRoomID().subscribe((roomID: string) => {
       this.roomID = roomID;
+    });
+    this.startListeningForGames();
+  }
+
+  startListeningForGames() {
+    this.wsService.startGameRes().subscribe((roomID: string) => {
+      console.log('RECEIVED: ', roomID);
+      this.router.navigateByUrl(`game/${roomID}`);
     });
   }
 
-  // ngOnChanges() {
-  //   this.showAllCurrentPlayers();
-  // }
-
-  // -----------------
-
-  // showAllCurrentPlayers() : void {
-  //   this.wsService.getAllCurrentPlayers();
-  // }
-
-  // getRoomID() : void {
-  //   this.wsService.getRoomID();
-  // }
-
-
+  startGame() {
+    this.wsService.startGameReq(this.roomID);
+  }
 }

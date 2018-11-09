@@ -41,9 +41,13 @@ io.on('connection', (socket) => {
 
   });
 
-  // socket.on('startGame', ())
+  socket.on('startGameReq', (roomID) => {
+    //io.sockets.emit('startGameRes', roomID )
+    io.sockets.in(roomID).emit('startGameRes', roomID);
+  })
 
   socket.on('disconnect', () => {
+   // delete rooms.roo
     console.log('Connection ended');
   });
 })
@@ -57,3 +61,16 @@ server.listen(port, () => {
 chooseRandomLocation = () => {
 
 }
+
+/*
+Game logic:
+--------------------------------------------------------
+1. Choose random location and store in variable
+2. Get all players from that room and store in variable
+3. Shuffle players into random order
+4. Grab roles using location value as key and store in varibable
+5. Add spy to front of role list
+6. For each player in shuffled list, emit a {role} to them
+{isSpy: false, location: The Beach, role: Ice Cream Seller}
+--------------------------------------------------------
+*/

@@ -14,7 +14,7 @@ export class WebsocketService {
   }
 
   initSocket(): void {
-    this.socket = io.connect('http://localhost:3000')
+    this.socket = io.connect('http://localhost:3000');
   }
 
   createRoom(data: object): void {
@@ -49,6 +49,19 @@ export class WebsocketService {
         if (res.roomID === roomID) {
           observer.next(res);
         }
+      });
+    });
+  }
+
+  startGameReq = (roomID: string) => {
+    this.socket.emit('startGameReq', roomID);
+  }
+
+  startGameRes = () => {
+    return Observable.create((observer) => {
+      this.socket.on('startGameRes', (roomID) => {
+        console.log(roomID);
+        observer.next(roomID);
       });
     });
   }
