@@ -13,7 +13,7 @@ export class WebsocketService {
   constructor() {
   }
 
-  initSocket (): void {
+  initSocket(): void {
     this.socket = io.connect('http://localhost:3000')
   }
 
@@ -25,11 +25,11 @@ export class WebsocketService {
     this.socket.emit('join', data);
   }
 
-  disconnectSocket (): void {
+  disconnectSocket(): void {
     this.socket.disconnect();
   }
 
-  gameDoesNotExist (): void { // Check if room exists when joining a game
+  gameDoesNotExist(): void { // Check if room exists when joining a game
     this.socket.on('message', (data) => {
       return;
     })
@@ -43,10 +43,12 @@ export class WebsocketService {
     })
   }
 
-  getAllCurrentPlayers = () => {
+  getAllCurrentPlayers = (roomID: any) => {
     return Observable.create((observer) => {
-      this.socket.on('currentPlayers', (player) => {
-        observer.next(player);
+      this.socket.on('currentPlayers', (res) => {
+        if (res.roomID === roomID) {
+          observer.next(res);
+        }
       })
     })
   }

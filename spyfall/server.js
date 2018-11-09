@@ -9,11 +9,14 @@ const server = http.createServer(app);
 const io = socketIO(server);
 const rooms = {};
 
+const locationsAndRoles = require('./locationAndRoles.json');
+
 io.on('connection', (socket) => {
   console.log('New connection');
 
   socket.on('create', (data) => {
     socket.join(data.id);
+    socket.roomID = [data.id];
     rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
     socket.emit('roomID', data.id);
@@ -26,15 +29,17 @@ io.on('connection', (socket) => {
       console.log(`${data.id} doesn't exist!`);
       return;
     }
-
     socket.join(data.id);
     rooms[data.id] = [...rooms[data.id], data.name];
     console.log(`${data.name} has joined room "${data.id}".`);
     //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
-
     io.sockets.emit('currentPlayers', { players: rooms[data.id] });
-  })
+    console.log('ROOMID: ', socket.rooms);
+
+  });
+
+  // socket.on('startGame', ())
 
   socket.on('disconnect', () => {
     console.log('Connection ended');
@@ -45,3 +50,8 @@ server.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 
 })
+
+
+chooseRandomLocation = () => {
+
+}

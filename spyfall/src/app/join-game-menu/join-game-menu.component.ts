@@ -9,10 +9,17 @@ import { WebsocketService } from '../websocket.service';
 export class JoinGameMenuComponent implements OnInit {
 
   status: boolean = false;
+  roomID: any;
+
+
 
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
+  }
+
+  onKey(event: any) {
+    this.roomID = event.target.value;
   }
 
   joinGame(name, id): void {

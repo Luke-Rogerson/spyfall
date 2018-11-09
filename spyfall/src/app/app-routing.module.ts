@@ -10,8 +10,8 @@ const routes: Routes = [
   {path: '', component: StartMenuComponent},
   {path: 'newgame', component: NewGameMenuComponent},
   {path: 'joingame', component: JoinGameMenuComponent},
-  {path: 'lobby', component: LobbyComponent},
-  {path: 'game', component: MainGameDisplayComponent}
+  {path: 'lobby/:id', component: LobbyComponent},
+  {path: 'game/:id', component: MainGameDisplayComponent}
 ]
 
 @NgModule({

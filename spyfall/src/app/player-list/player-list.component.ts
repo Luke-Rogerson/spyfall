@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { WebsocketService } from '../websocket.service';
+import { Params, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-player-list',
@@ -10,11 +11,14 @@ export class PlayerListComponent implements OnInit, OnChanges {
 
   player: string;
   players: any = [];
+  roomID: any;
 
-  constructor(private wsService: WebsocketService) { }
+  constructor(private wsService: WebsocketService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getAllCurrentPlayers();
+    this.route.params.forEach((params: Params) => {
+      this.roomID = +params['id'];
+    })
   }
 
   ngOnChanges() {
@@ -23,9 +27,9 @@ export class PlayerListComponent implements OnInit, OnChanges {
 
   getAllCurrentPlayers(): void {
     this.wsService
-    .getAllCurrentPlayers().subscribe((res: any) => {
-      this.players = res.players;
-    })
+      .getAllCurrentPlayers(this.roomID).subscribe((res: any) => {
+        this.players = res.players;
+      })
   }
 
 
