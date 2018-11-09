@@ -16,11 +16,13 @@ io.on('connection', (socket) => {
 
   socket.on('create', (data) => {
     socket.join(data.id);
-    socket.roomID = [data.id];
+    console.log('DATA: ',JSON.stringify(data));
+
+    //socket.roomID = data.id;
     rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
     socket.emit('roomID', data.id);
-    socket.emit('currentPlayers', { players: rooms[data.id] });
+    socket.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
   });
 
   socket.on('join', (data) => {
@@ -34,7 +36,7 @@ io.on('connection', (socket) => {
     console.log(`${data.name} has joined room "${data.id}".`);
     //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
-    io.sockets.emit('currentPlayers', { players: rooms[data.id] });
+    io.sockets.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
     console.log('ROOMID: ', socket.rooms);
 
   });

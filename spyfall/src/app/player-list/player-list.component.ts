@@ -17,8 +17,9 @@ export class PlayerListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      this.roomID = +params['id'];
-    })
+      this.roomID = +params['id'] + '';
+    });
+    this.getAllCurrentPlayers();
   }
 
   ngOnChanges() {
@@ -29,7 +30,7 @@ export class PlayerListComponent implements OnInit, OnChanges {
     this.wsService
       .getAllCurrentPlayers(this.roomID).subscribe((res: any) => {
         this.players = res.players;
-      })
+      });
   }
 
 

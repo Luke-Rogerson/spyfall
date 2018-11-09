@@ -8,7 +8,7 @@ import { WebsocketService } from '../websocket.service';
 })
 export class NewGameMenuComponent {
 
-  id: number = parseInt(Math.random().toString().slice(2, 6))
+  id: string = parseInt(Math.random().toString().slice(2, 6)) + '';
 
   constructor(private wsService: WebsocketService) {
   }
@@ -17,7 +17,7 @@ export class NewGameMenuComponent {
     const data = {
       name: name,
       id: this.id
-    }
+    };
     this.wsService.createRoom(data);
   }
 

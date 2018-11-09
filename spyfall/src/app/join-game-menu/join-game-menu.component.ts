@@ -8,10 +8,8 @@ import { WebsocketService } from '../websocket.service';
 })
 export class JoinGameMenuComponent implements OnInit {
 
-  status: boolean = false;
+  status: false;
   roomID: any;
-
-
 
   constructor(private wsService: WebsocketService) { }
 
@@ -23,11 +21,11 @@ export class JoinGameMenuComponent implements OnInit {
   }
 
   joinGame(name, id): void {
-    this.checkIfGameExists()
+    this.checkIfGameExists();
     const data = {
       name: name,
       id: id
-    }
+    };
     this.wsService.joinRoom(data);
   }
 

@@ -32,25 +32,25 @@ export class WebsocketService {
   gameDoesNotExist(): void { // Check if room exists when joining a game
     this.socket.on('message', (data) => {
       return;
-    })
+    });
   }
 
   getRoomID = () => {
     return Observable.create((observer) => {
       this.socket.on('roomID', (roomID) => {
         observer.next(roomID);
-      })
-    })
+      });
+    });
   }
 
-  getAllCurrentPlayers = (roomID: any) => {
+  getAllCurrentPlayers = (roomID: string) => {
     return Observable.create((observer) => {
       this.socket.on('currentPlayers', (res) => {
         if (res.roomID === roomID) {
           observer.next(res);
         }
-      })
-    })
+      });
+    });
   }
 
 }

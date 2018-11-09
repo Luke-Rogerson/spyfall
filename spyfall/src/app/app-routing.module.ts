@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'joingame', component: JoinGameMenuComponent},
   {path: 'lobby/:id', component: LobbyComponent},
   {path: 'game/:id', component: MainGameDisplayComponent}
-]
+];
 
 @NgModule({
   imports: [

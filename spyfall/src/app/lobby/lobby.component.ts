@@ -16,7 +16,7 @@ export class LobbyComponent implements OnInit {
     this.wsService
     .getRoomID().subscribe((roomID: number) => {
       this.roomID = roomID;
-    })
+    });
   }
 
   // ngOnChanges() {

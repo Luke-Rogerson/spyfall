@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-// import * as io from 'socket.io-client';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  // private socket;
-
-  constructor() {
+  constructor(private router: Router) {
   }
 
-  // ngOnInit() {
-  //   this.socket = io('http://localhost:3000');
-  // }
-
   title = 'spyfall';
+  ngOnInit() { // reroute to homepage on reinitialization
+    this.router.navigate(['']);
+  }
 }
