@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = socketIO(server);
 const rooms = {};
+const testRoom = { '9700': ['Luke', 'John', 'Barry', 'Sam'] };
 
 const locationsAndRoles = require('./locationAndRoles.json');
 
@@ -16,11 +17,10 @@ io.on('connection', (socket) => {
 
   socket.on('create', (data) => {
     socket.join(data.id);
-    console.log('DATA: ',JSON.stringify(data));
-
     //socket.roomID = data.id;
     rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
+    console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
     socket.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
   });
@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
     socket.join(data.id);
     rooms[data.id] = [...rooms[data.id], data.name];
     console.log(`${data.name} has joined room "${data.id}".`);
-    //console.log('ROOMS NOW: ', rooms);
+    console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
     io.sockets.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
     console.log('ROOMID: ', socket.rooms);
@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-   // delete rooms.roo
+    // delete rooms.roo
     console.log('Connection ended');
   });
 })
@@ -57,20 +57,29 @@ server.listen(port, () => {
 
 })
 
+// -------------------------------------------------------
+// Helper function to calculate roles and location
+chooseRandomLocationAndAllocateRoles = (roomID) => {
+  // Get random location and that location's roles, and add spy to roles
+  const allLocations = Object.keys(locationsAndRoles[0]);
+  const randomLocation = allLocations[Math.floor(Math.random() * allLocations.length)];
+  const roles = locationsAndRoles[0][randomLocation];
+  roles.unshift('Spy');
 
-chooseRandomLocation = () => {
+  // Get all players in room and shuffle them
+  const players = testRoom[9700];
+  const shufflePlayers = (players) => {
+    for (let i = players.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [players[i], players[j]] = [players[j], players[i]];
+    }
+    return players;
+  }
+  const shuffledPlayers = shufflePlayers([...players])
 
+  // Make an object to send back containing player name, role and location
+  const returnObject = [{name: shuffledPlayers[0], role: 'Spy'}];
+  for (let i = 1; i < shuffledPlayers.length; i++) {
+    returnObject.push({name : shuffledPlayers[i], role: roles[i], location: randomLocation});
+  }
 }
-
-/*
-Game logic:
---------------------------------------------------------
-1. Choose random location and store in variable
-2. Get all players from that room and store in variable
-3. Shuffle players into random order
-4. Grab roles using location value as key and store in varibable
-5. Add spy to front of role list
-6. For each player in shuffled list, emit a {role} to them
-{isSpy: false, location: The Beach, role: Ice Cream Seller}
---------------------------------------------------------
-*/
