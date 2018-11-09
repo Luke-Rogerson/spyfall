@@ -23,6 +23,7 @@ export class PlayerListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.log('CHANGED');
     this.getAllCurrentPlayers();
   }
 
@@ -30,6 +31,7 @@ export class PlayerListComponent implements OnInit, OnChanges {
     this.wsService
       .getAllCurrentPlayers(this.roomID).subscribe((res: any) => {
         this.players = res.players;
+        console.log('RECEIVED: ', this.players);
       });
   }
 

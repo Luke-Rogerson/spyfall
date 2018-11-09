@@ -23,7 +23,6 @@ export class LobbyComponent implements OnInit {
 
   startListeningForGames() {
     this.wsService.startGameRes().subscribe((roomID: string) => {
-      console.log('RECEIVED: ', roomID);
       this.router.navigateByUrl(`game/${roomID}`);
     });
   }

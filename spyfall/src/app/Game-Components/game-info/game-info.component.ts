@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameInfoComponent implements OnInit {
 
+  location: string;
+  role: string;
+
   constructor() { }
 
   ngOnInit() {
