@@ -65,17 +65,11 @@ export class WebsocketService {
     });
   }
 
-  // individualRolesAndLocationRes = () => {
-  //   return Observable.create((observer) => {
-      // this.socket.on('roleAndLocation', (res) => {
-      //   console.log('ROLES AND LOC: ', res);
-      // });
-  //   });
-  // }
-
-  rolesAndLocation(): void {
-    this.socket.on('roleAndLocation', (res) => {
-      console.log('ROLES AND LOC: ', res);
+  rolesAndLocation = () => {
+    return Observable.create((observer) => {
+      this.socket.on('roleAndLocation', (res) => {
+        console.log(res);
+      });
     });
   }
 

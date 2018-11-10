@@ -46,7 +46,9 @@ io.on('connection', (socket) => {
     io.sockets.in(roomID).emit('currentPlayers', { players: rooms[roomID], roomID: roomID });
     const shuffledPlayers = shufflePlayers(roomID);
     const newLocationAndRoles = getRandomLocationAndRoles();
-
+    for (let i = 0; i < shuffledPlayers.length; i++) {
+      io.to(`${shuffledPlayers[i]}`).emit('roleAndLocation', newLocationAndRoles[i]);
+    }
   })
 
   socket.on('disconnect', () => {
