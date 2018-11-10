@@ -44,6 +44,8 @@ io.on('connection', (socket) => {
   socket.on('startGameReq', (roomID) => {
     //io.sockets.emit('startGameRes', roomID )
     io.sockets.in(roomID).emit('startGameRes', roomID);
+    // socket.emit('currentPlayers', { players: rooms[roomID], roomID: roomID });
+    io.sockets.in(roomID).emit('currentPlayers', { players: rooms[roomID], roomID: roomID });
   })
 
   socket.on('disconnect', () => {
@@ -83,3 +85,4 @@ chooseRandomLocationAndAllocateRoles = (roomID) => {
     returnObject.push({name : shuffledPlayers[i], role: roles[i], location: randomLocation});
   }
 }
+// -------------------------------------------------------
