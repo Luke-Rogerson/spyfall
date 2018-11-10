@@ -17,6 +17,8 @@ io.on('connection', (socket) => {
 
   socket.on('create', (data) => {
     socket.join(data.id);
+    socket[data.name] = data.name
+
     //socket.roomID = data.id;
     rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
@@ -32,9 +34,9 @@ io.on('connection', (socket) => {
       return;
     }
     socket.join(data.id);
+    socket[data.name] = data.name
     rooms[data.id] = [...rooms[data.id], data.name];
     console.log(`${data.name} has joined room "${data.id}".`);
-    //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
     io.sockets.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
     console.log('ROOMID: ', socket.rooms);
@@ -47,8 +49,11 @@ io.on('connection', (socket) => {
     const shuffledPlayers = shufflePlayers(roomID);
     const newLocationAndRoles = getRandomLocationAndRoles();
     for (let i = 0; i < shuffledPlayers.length; i++) {
-      io.sockets.in(roomID).to(shuffledPlayers[i]).emit('roleAndLocation', newLocationAndRoles[i]);
+      socket.broadcast.to(socket.id).emit('roleAndLocation', newLocationAndRoles[i]);
     }
+
+    io.in(roomID).clients((error, clients) => clients[0] = 'bob');
+    io.in(roomID).clients((error, clients) => console.log(clients));
   })
 
   socket.on('disconnect', () => {
@@ -71,9 +76,9 @@ function getRandomLocationAndRoles () {
   roles.unshift('Spy');
 
   // Contruct an array to return containing roles and location
-  const rolesAndLocation = [{role: 'Spy', location: '???'}];
+  const rolesAndLocation = [{ role: 'Spy', location: '???' }];
   for (let i = 1; i < roles.length; i++) {
-    rolesAndLocation.push({role: roles[i], location: randomLocation});
+    rolesAndLocation.push({ role: roles[i], location: randomLocation });
   }
   return rolesAndLocation;
 }
