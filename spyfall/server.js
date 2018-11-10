@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     //socket.roomID = data.id;
     rooms[data.id] = [data.name];
     console.log(`${data.name} has joined room "${data.id}".`)
-    console.log('ROOMS NOW: ', rooms);
+    //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
     socket.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
   });
@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
     socket.join(data.id);
     rooms[data.id] = [...rooms[data.id], data.name];
     console.log(`${data.name} has joined room "${data.id}".`);
-    console.log('ROOMS NOW: ', rooms);
+    //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
     io.sockets.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
     console.log('ROOMID: ', socket.rooms);
@@ -44,7 +44,8 @@ io.on('connection', (socket) => {
   socket.on('startGameReq', (roomID) => {
     io.sockets.in(roomID).emit('startGameRes', roomID);
     io.sockets.in(roomID).emit('currentPlayers', { players: rooms[roomID], roomID: roomID });
-    chooseRandomLocationAllocateRolesAndEmitToEachPlayer(roomID)
+    const shuffledPlayers = shufflePlayers(roomID);
+    const newLocationAndRoles = getRandomLocationAndRoles();
 
   })
 
@@ -60,15 +61,24 @@ server.listen(port, () => {
 })
 
 // -------------------------------------------------------
-// Helper function to calculate roles and location
-function chooseRandomLocationAllocateRolesAndEmitToEachPlayer (roomID) {
+function getRandomLocationAndRoles () {
   // Get random location and that location's roles, and add spy to roles
   const allLocations = Object.keys(locationsAndRoles[0]);
   const randomLocation = allLocations[Math.floor(Math.random() * allLocations.length)];
   const roles = locationsAndRoles[0][randomLocation];
   roles.unshift('Spy');
 
-  // Get all players in room and shuffle them
+  // Contruct an array to return containing roles and location
+  const rolesAndLocation = [{role: 'Spy', location: '???'}];
+  for (let i = 1; i < roles.length; i++) {
+    rolesAndLocation.push({role: roles[i], location: randomLocation});
+  }
+  return rolesAndLocation;
+}
+
+
+// Get players from room and shuffle their order
+function shufflePlayers (roomID) {
   const players = rooms[roomID];
   const shufflePlayers = (players) => {
     for (let i = players.length - 1; i > 0; i--) {
@@ -77,18 +87,5 @@ function chooseRandomLocationAllocateRolesAndEmitToEachPlayer (roomID) {
     }
     return players;
   }
-  const shuffledPlayers = shufflePlayers([...players])
-
-  // Make an object to send back containing player name, role and location
-  const returnObjects = [{role: 'Spy', location: '???'}];
-  for (let i = 1; i < shuffledPlayers.length; i++) {
-    returnObjects.push({role: roles[i], location: randomLocation});
-  }
-
-  // Emit a return object to each player in room
-  for (let i = 0; i < shuffledPlayers.length; i++) {
-    rooms[shuffledPlayers[i]].emit('roleAndLocation', returnObjects[i]);
-  }
+  return shufflePlayers([...players]);
 }
-// -------------------------------------------------------
-
