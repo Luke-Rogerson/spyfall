@@ -60,9 +60,22 @@ export class WebsocketService {
   startGameRes = () => {
     return Observable.create((observer) => {
       this.socket.on('startGameRes', (roomID) => {
-        console.log(roomID);
         observer.next(roomID);
       });
+    });
+  }
+
+  // individualRolesAndLocationRes = () => {
+  //   return Observable.create((observer) => {
+      // this.socket.on('roleAndLocation', (res) => {
+      //   console.log('ROLES AND LOC: ', res);
+      // });
+  //   });
+  // }
+
+  rolesAndLocation(): void {
+    this.socket.on('roleAndLocation', (res) => {
+      console.log('ROLES AND LOC: ', res);
     });
   }
 

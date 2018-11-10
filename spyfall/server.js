@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = socketIO(server);
 const rooms = {};
-//const testRoom = { '9700': ['Luke', 'John', 'Barry', 'Sam'] };
+const testRoom = { '9700': ['Luke', 'John', 'Barry', 'Sam'] };
 
 const locationsAndRoles = require('./locationAndRoles.json');
 
@@ -44,6 +44,8 @@ io.on('connection', (socket) => {
   socket.on('startGameReq', (roomID) => {
     io.sockets.in(roomID).emit('startGameRes', roomID);
     io.sockets.in(roomID).emit('currentPlayers', { players: rooms[roomID], roomID: roomID });
+    chooseRandomLocationAllocateRolesAndEmitToEachPlayer(roomID)
+
   })
 
   socket.on('disconnect', () => {
@@ -59,7 +61,7 @@ server.listen(port, () => {
 
 // -------------------------------------------------------
 // Helper function to calculate roles and location
-chooseRandomLocationAndAllocateRoles = (roomID) => {
+function chooseRandomLocationAllocateRolesAndEmitToEachPlayer (roomID) {
   // Get random location and that location's roles, and add spy to roles
   const allLocations = Object.keys(locationsAndRoles[0]);
   const randomLocation = allLocations[Math.floor(Math.random() * allLocations.length)];
@@ -78,9 +80,15 @@ chooseRandomLocationAndAllocateRoles = (roomID) => {
   const shuffledPlayers = shufflePlayers([...players])
 
   // Make an object to send back containing player name, role and location
-  const returnObject = [{name: shuffledPlayers[0], role: 'Spy', location: '???'}];
+  const returnObjects = [{role: 'Spy', location: '???'}];
   for (let i = 1; i < shuffledPlayers.length; i++) {
-    returnObject.push({name : shuffledPlayers[i], role: roles[i], location: randomLocation});
+    returnObjects.push({role: roles[i], location: randomLocation});
+  }
+
+  // Emit a return object to each player in room
+  for (let i = 0; i < shuffledPlayers.length; i++) {
+    rooms[shuffledPlayers[i]].emit('roleAndLocation', returnObjects[i]);
   }
 }
 // -------------------------------------------------------
+
