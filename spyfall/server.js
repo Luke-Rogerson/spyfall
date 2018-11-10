@@ -8,23 +8,33 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = socketIO(server);
 const rooms = {};
-const testRoom = { '9700': ['Luke', 'John', 'Barry', 'Sam'] };
+const testRoom = {
+  '7888':
+    [{ aaaaa: 's4A1B2ZDk-c96YtsAAAD' },
+    { bbbb: 'rZe_Rdb8U_j-iwyTAAAE' }]
+}
+const rooms2 = { 9700: [{ Luke: 'yA33KLKnNAlG9EyHAAAD' }, { Bob: 'yA33KLKnNAlG9EyHAAAD' }] };
 
 const locationsAndRoles = require('./locationAndRoles.json');
+
+//const currentPlayers = rooms[data.id].map(el => Object.keys(el));
 
 io.on('connection', (socket) => {
   console.log('New connection');
 
   socket.on('create', (data) => {
     socket.join(data.id);
-    socket[data.name] = data.name
-
     //socket.roomID = data.id;
-    rooms[data.id] = [data.name];
+    rooms[data.id] = [{ [data.name]: socket.id }];
     console.log(`${data.name} has joined room "${data.id}".`)
     //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
-    socket.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
+    socket.emit('currentPlayers', {
+      players: rooms[data.id].map(el => Object.keys(el)),
+      roomID: data.id
+    });
+    console.log('ROOMS: ', rooms);
+
   });
 
   socket.on('join', (data) => {
@@ -34,26 +44,33 @@ io.on('connection', (socket) => {
       return;
     }
     socket.join(data.id);
-    socket[data.name] = data.name
-    rooms[data.id] = [...rooms[data.id], data.name];
+    rooms[data.id] = [...rooms[data.id], { [data.name]: socket.id }];
     console.log(`${data.name} has joined room "${data.id}".`);
     socket.emit('roomID', data.id);
-    io.sockets.emit('currentPlayers', { players: rooms[data.id], roomID: data.id });
-    console.log('ROOMID: ', socket.rooms);
+    io.sockets.emit('currentPlayers', {
+      players: rooms[data.id].map(el => Object.keys(el)),
+      roomID: data.id
+    });
+
+    console.log(rooms);
 
   });
 
   socket.on('startGameReq', (roomID) => {
     io.sockets.in(roomID).emit('startGameRes', roomID);
-    io.sockets.in(roomID).emit('currentPlayers', { players: rooms[roomID], roomID: roomID });
+    io.sockets.in(roomID).emit('currentPlayers', {
+      players: rooms[roomID].map(el => Object.keys(el)),
+      roomID: roomID
+    });
     const shuffledPlayers = shufflePlayers(roomID);
     const newLocationAndRoles = getRandomLocationAndRoles();
     for (let i = 0; i < shuffledPlayers.length; i++) {
-      socket.broadcast.to(socket.id).emit('roleAndLocation', newLocationAndRoles[i]);
+      console.log((Object.values(shuffledPlayers[i])).toString());
+      //socket.broadcast.to((Object.values(shuffledPlayers[i])).toString()).emit('roleAndLocation', newLocationAndRoles[i]);
+      io.to((Object.values(shuffledPlayers[i])).toString()).emit('roleAndLocation', newLocationAndRoles[i]);
     }
 
-    io.in(roomID).clients((error, clients) => clients[0] = 'bob');
-    io.in(roomID).clients((error, clients) => console.log(clients));
+    // io.in(roomID).clients((error, clients) => console.log(clients));
   })
 
   socket.on('disconnect', () => {
@@ -87,6 +104,7 @@ function getRandomLocationAndRoles () {
 // Get players from room and shuffle their order
 function shufflePlayers (roomID) {
   const players = rooms[roomID];
+  console.log('Players: ', players)
   const shufflePlayers = (players) => {
     for (let i = players.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -96,3 +114,5 @@ function shufflePlayers (roomID) {
   }
   return shufflePlayers([...players]);
 }
+
+
