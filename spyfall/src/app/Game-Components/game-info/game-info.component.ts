@@ -19,7 +19,7 @@ export class GameInfoComponent implements OnInit {
 
   getRoleAndLocation() {
     this.wsService.rolesAndLocation().subscribe((data) => {
-      console.log('component',data.role);
+      console.log('component', data);
     });
   }
 

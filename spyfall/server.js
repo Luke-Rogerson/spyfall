@@ -52,8 +52,6 @@ io.on('connection', (socket) => {
       roomID: data.id
     });
 
-    console.log(rooms);
-
   });
 
   socket.on('startGameReq', (roomID) => {
