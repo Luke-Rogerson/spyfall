@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from 'src/app/websocket.service';
 
 @Component({
   selector: 'app-game-info',
@@ -10,9 +11,16 @@ export class GameInfoComponent implements OnInit {
   location: string;
   role: string;
 
-  constructor() { }
+  constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
+    this.getRoleAndLocation();
+  }
+
+  getRoleAndLocation() {
+    this.wsService.rolesAndLocation().subscribe((data) => {
+      console.log(data.role);
+    });
   }
 
 }

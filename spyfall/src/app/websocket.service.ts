@@ -69,6 +69,8 @@ export class WebsocketService {
     return Observable.create((observer) => {
       this.socket.on('roleAndLocation', (res) => {
         console.log(res);
+
+        observer.next(res);
       });
     });
   }
