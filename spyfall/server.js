@@ -55,20 +55,21 @@ io.on('connection', (socket) => {
   });
 
   socket.on('startGameReq', (roomID) => {
+    // On start game request, emit start game signal to all users in room
     io.sockets.in(roomID).emit('startGameRes', roomID);
+    // Send list of players to all players
     io.sockets.in(roomID).emit('currentPlayers', {
       players: rooms[roomID].map(el => Object.keys(el)),
       roomID: roomID
     });
+    // Grab users in room and shuffle their order
     const shuffledPlayers = shufflePlayers(roomID);
+    // Get a random location, its roles, and spy
     const newLocationAndRoles = getRandomLocationAndRoles();
+    // For each shuffled player, send an object containing role and location
     for (let i = 0; i < shuffledPlayers.length; i++) {
-      console.log((Object.values(shuffledPlayers[i])).toString());
-      //socket.broadcast.to((Object.values(shuffledPlayers[i])).toString()).emit('roleAndLocation', newLocationAndRoles[i]);
       io.to((Object.values(shuffledPlayers[i])).toString()).emit('roleAndLocation', newLocationAndRoles[i]);
     }
-
-    // io.in(roomID).clients((error, clients) => console.log(clients));
   })
 
   socket.on('disconnect', () => {
