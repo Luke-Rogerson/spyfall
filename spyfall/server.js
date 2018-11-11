@@ -89,7 +89,6 @@ function getRandomLocationAndRoles () {
   const allLocations = Object.keys(locationsAndRoles[0]);
   const randomLocation = allLocations[Math.floor(Math.random() * allLocations.length)];
   const roles = locationsAndRoles[0][randomLocation];
-  roles.unshift('Spy');
 
   // Contruct an array to return containing roles and location
   const rolesAndLocation = [{ role: 'Spy', location: '???' }];
