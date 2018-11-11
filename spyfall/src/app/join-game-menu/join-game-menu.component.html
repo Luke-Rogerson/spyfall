@@ -1,8 +1,8 @@
 <form>
   <input #name name="name" placeholder="Enter your name">
   <input #id name="access-code" placeholder="Enter game code" (keyup)="onKey($event)">
-  <button routerLink="/lobby/{{roomID}}" type="button" (click)="joinGame(name.value, id.value)">JOIN</button>
 </form>
+<button routerLink="/lobby/{{roomID}}" type="button" (click)="joinGame(name.value, id.value)">JOIN</button>
 <button routerLink="/" (click)="disconnectSocket()">BACK</button>
 <!-- <h6 [ngClass]="status ? 'warning-hide' : 'warning-show'">Sorry, that game doesn't exist! Try again...</h6>
 Hide and show a warning message -->

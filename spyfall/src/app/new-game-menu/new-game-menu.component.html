@@ -1,5 +1,9 @@
+<div class="new-game-menu">
 <form>
 <input #name name="name" placeholder="Enter your name">
-<button routerLink="/lobby/{{this.id}}" type="button" (click)="createGame(name.value)">CREATE</button>
 </form>
+<div class="new-game-menu__buttons">
 <button routerLink="/" (click)="disconnectSocket()">BACK</button>
+<button routerLink="/lobby/{{this.id}}" type="button" (click)="createGame(name.value)">CREATE</button>
+</div>
+</div>

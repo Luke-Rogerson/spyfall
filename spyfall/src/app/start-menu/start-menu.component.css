@@ -1,0 +1,14 @@
+.start-menu {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-flow: column;
+}
+
+.start-menu button {
+  margin: 10px;
+  background: #dbdee0;
+  width: 350px;
+  height: 100px;
+  font-size: 50px;
+}

@@ -1,0 +1,30 @@
+.new-game-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.new-game-menu__buttons{
+  size: 50%;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+}
+
+input {
+  width: 350px;
+  height: 100px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.new-game-menu__buttons button {
+  margin: 10px;
+  background: #dbdee0;
+  width: 170px;
+  height: 100px;
+  font-size: 50px;
+}
