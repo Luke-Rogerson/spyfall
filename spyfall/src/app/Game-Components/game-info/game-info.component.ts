@@ -8,8 +8,9 @@ import { WebsocketService } from 'src/app/websocket.service';
 })
 export class GameInfoComponent implements OnInit {
 
-  location: string;
   role: string;
+  location: string;
+
 
   constructor(private wsService: WebsocketService) { }
 
@@ -17,10 +18,15 @@ export class GameInfoComponent implements OnInit {
     this.getRoleAndLocation();
   }
 
-  getRoleAndLocation() {
-    this.wsService.rolesAndLocation().subscribe((data) => {
-      console.log('component', data);
+   async getRoleAndLocation() {
+     await this.wsService.rolesAndLocation().subscribe((data) => {
+      this.role = data.role;
+      this.location = data.location;
     });
+
   }
+
+  // {role: "Mechanic", location: "Passenger Train"}
+  // {role: "Spy", location: "???"}
 
 }
