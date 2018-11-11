@@ -23,7 +23,6 @@ export class PlayerListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('CHANGED');
     this.getAllCurrentPlayers();
   }
 

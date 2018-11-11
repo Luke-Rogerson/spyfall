@@ -17,8 +17,6 @@ const rooms2 = { 9700: [{ Luke: 'yA33KLKnNAlG9EyHAAAD' }, { Bob: 'yA33KLKnNAlG9E
 
 const locationsAndRoles = require('./locationAndRoles.json');
 
-//const currentPlayers = rooms[data.id].map(el => Object.keys(el));
-
 io.on('connection', (socket) => {
   console.log('New connection');
 
@@ -105,7 +103,6 @@ function getRandomLocationAndRoles () {
   }
   return rolesAndLocation;
 }
-
 
 // Get players from room and shuffle their order
 function shufflePlayers (roomID) {
