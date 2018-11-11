@@ -76,7 +76,7 @@ export class WebsocketService {
   remainingTime = () => {
     return Observable.create((observer) => {
       this.socket.on('beginCountdown', (res) => {
-        console.log('TIME: ', res);
+        observer.next(res);
       });
     });
   }

@@ -73,10 +73,10 @@ io.on('connection', (socket) => {
     // Emit time left to all players in room
     let timeRemaining = 480; // 8 minutes
     setInterval(() => {
-      if (timeRemaining === 0) return;
-      timeRemaining -= 1;
-      socket.broadcast.emit('beginCountdown', timeRemaining);
-    }, 1000)
+      io.sockets.in(roomID).emit('beginCountdown', {timeRemaining: timeRemaining});
+        if (timeRemaining === 0) return;
+        timeRemaining -= 1;
+    }, 1000);
   })
 
   socket.on('disconnect', () => {
@@ -90,16 +90,6 @@ server.listen(port, () => {
 
 })
 
-// -------------------------------------------------------
-// Countdown timer for game length
-function countdownTimer () {
-  let timeRemaining = 480; // 8 minutes in seconds
-  setInterval(() => {
-    if (timeRemaining === 0) return;
-    timeRemaining -= 1;
-    socket.broadcast.emit('beginCountdown', timeRemaining);
-  }, 1000)
-}
 
 // -------------------------------------------------------
 function getRandomLocationAndRoles () {
