@@ -1,6 +1,8 @@
-<h2>Players: </h2>
-<div *ngIf="players.length">
-  <li *ngFor="let player of players">
-    {{player}}
-  </li>
+<div class="player-list">
+  <h2>PLAYERS</h2>
+  <div *ngIf="players.length">
+    <li *ngFor="let player of players">
+      {{player}}
+    </li>
+  </div>
 </div>

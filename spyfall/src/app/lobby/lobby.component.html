@@ -1,4 +1,9 @@
-<h2>Lobby</h2>
-<h4>Code: {{roomID}}</h4>
-<app-player-list></app-player-list>
-<button (click)="startGame()">START</button>
+<div class="lobby">
+  <h2>LOBBY</h2>
+  <div class="lobby__access-code">
+    <h4>ACCESS CODE</h4>
+    <h3>{{roomID}}</h3>
+  </div>
+  <app-player-list></app-player-list>
+  <button (click)="startGame()">START</button>
+</div>

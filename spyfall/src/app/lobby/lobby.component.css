@@ -1,0 +1,43 @@
+.lobby {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+button {
+  margin: 10px;
+  background: #dbdee0;
+  width: 150px;
+  height: 50px;
+  font-size: 40px;
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 40px;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 40px;
+  color: rgb(245, 111, 9);
+}
+
+h4 {
+  margin: 0px;
+}
+
+.lobby__access-code {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
