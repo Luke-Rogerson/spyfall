@@ -13,7 +13,7 @@
 .player-list h2 {
   margin: 0;
   padding: 0;
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .player-list__list{
@@ -48,6 +48,7 @@
 
  li {
    width: 25%;
+   margin-bottom: 10px;
  }
 
 
