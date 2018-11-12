@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
     socket.join(data.id);
     //socket.roomID = data.id;
     rooms[data.id] = [{ [data.name]: socket.id }];
+
     console.log(`${data.name} has joined room "${data.id}".`)
     //console.log('ROOMS NOW: ', rooms);
     socket.emit('roomID', data.id);
@@ -66,14 +67,16 @@ io.on('connection', (socket) => {
     const newLocationAndRoles = getRandomLocationAndRoles();
     // For each shuffled player, send an object containing role and location
     for (let i = 0; i < shuffledPlayers.length; i++) {
+      console.log('ROLES: ', shuffledPlayers[i]);
       io.to((Object.values(shuffledPlayers[i])).toString()).emit('roleAndLocation', newLocationAndRoles[i]);
     }
     // Emit time left to all players in room
-    let timeRemaining = 480; // 8 minutes
-    setInterval(() => {
+    const initialTimeRemaining = 480;
+    let timeRemaining = initialTimeRemaining; // 8 minutes
+    const intervalID = setInterval(() => {
       io.sockets.in(roomID).emit('beginCountdown', {timeRemaining: timeRemaining});
-        if (timeRemaining === 0) return;
-        timeRemaining -= 1;
+      if (timeRemaining === 0) clearInterval(intervalID);
+      timeRemaining -= 1;
     }, 1000);
   })
 

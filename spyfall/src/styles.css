@@ -7,7 +7,7 @@
 
 body {
   font-family: "Dosis", sans-serif;
-  background: black;
+  background: #262626;
   color: white;
 }
 
@@ -21,11 +21,14 @@ body {
   margin: auto;
 }
 
+.header {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
 .header h1 {
   font-size: 70px;
-  margin: 10px;
-  margin-bottom: 20px;
-
+  margin: 0px;
 }
 
 button {

@@ -3,7 +3,10 @@
   <div class="player-list__list" *ngIf="players.length">
     <ul>
     <li *ngFor="let player of players">
-      {{player}}
+      <div class="player-list__list__element">
+        <img src="assets/user-icons-svg/boy-1.svg" alt="{{player}}">
+        {{player}}
+      </div>
     </li>
   </ul>
   </div>
