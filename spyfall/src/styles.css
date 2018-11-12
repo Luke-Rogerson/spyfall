@@ -31,5 +31,13 @@ button {
   cursor: pointer;
   border: darkblue;
   border-radius: 20px;
+  outline: none;
+}
+
+input {
+  outline: none;
+  font-size: 40px;
+  font-family:inherit;
+  padding: 15px;
 }
 

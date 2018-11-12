@@ -5,3 +5,43 @@
 .warning-show {
   display: none;
 }
+
+.join-game-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.join-game-menu__forms {
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+input {
+  width: 350px;
+  height: 100px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+
+}
+
+.join-game-menu__buttons {
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+}
+
+.join-game-menu__buttons button {
+  margin: 10px;
+  background: #dbdee0;
+  width: 170px;
+  height: 100px;
+  font-size: 50px;
+}
+

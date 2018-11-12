@@ -14,7 +14,7 @@ export class WebsocketService {
   }
 
   initSocket(): void {
-    this.socket = io.connect('http://localhost:3000');
+    this.socket = io.connect('http://192.168.1.221:3000');
   }
 
   createRoom(data: object): void {
