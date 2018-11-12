@@ -13,6 +13,7 @@ import { NewGameMenuComponent } from './new-game-menu/new-game-menu.component';
 import { JoinGameMenuComponent } from './join-game-menu/join-game-menu.component';
 import { MainGameDisplayComponent } from './Game-Components/main-game-display/main-game-display.component';
 import { TimerComponent } from './Game-Components/timer/timer.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TimerComponent } from './Game-Components/timer/timer.component';
     NewGameMenuComponent,
     JoinGameMenuComponent,
     MainGameDisplayComponent,
-    TimerComponent
+    TimerComponent,
+    InstructionsComponent
   ],
   imports: [
     BrowserModule,

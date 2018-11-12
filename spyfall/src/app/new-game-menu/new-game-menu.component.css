@@ -8,17 +8,19 @@
 
 .new-game-menu__buttons{
   width: 350px;
-  size: 50%;
   display: flex;
   justify-content: center;
   justify-content: center;
 }
 
 input {
-  width: 350px;
+  width: 330px;
   height: 100px;
   border-radius: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .new-game-menu__buttons button {
@@ -26,7 +28,8 @@ input {
   background: #dbdee0;
   width: 170px;
   height: 100px;
-  font-size: 50px;
+  font-size: 40px;
+  padding: 0;
 }
 
 .input-text {

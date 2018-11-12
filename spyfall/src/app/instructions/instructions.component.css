@@ -1,0 +1,25 @@
+p, h3 {
+  margin: 2px;
+}
+
+.instructions-container {
+  display: flex;
+  position: fixed;
+  top: 20;
+  left: 0;
+  flex-direction: column;
+  min-width: 350px;
+  max-width: 800px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin: auto;
+}
+
+button {
+  margin: 10px;
+  background: #dbdee0;
+  width: 150px;
+  height: 50px;
+  font-size: 40px;
+}

@@ -16,13 +16,16 @@ body {
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  min-width: 375px;
+  min-width: 350px;
   max-width: 1200px;
   margin: auto
 }
 
 .header h1 {
   font-size: 70px;
+  margin: 10px;
+  margin-bottom: 20px;
+
 }
 
 button {

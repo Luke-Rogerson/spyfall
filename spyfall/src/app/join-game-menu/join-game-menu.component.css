@@ -23,11 +23,13 @@
 }
 
 input {
-  width: 350px;
+  width: 330px;
   height: 100px;
   border-radius: 20px;
   margin-bottom: 10px;
-
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .join-game-menu__buttons {
@@ -40,8 +42,9 @@ input {
 .join-game-menu__buttons button {
   margin: 10px;
   background: #dbdee0;
-  width: 170px;
+  width: 175px;
   height: 100px;
-  font-size: 50px;
+  font-size: 40px;
+  padding: 0;
 }
 
