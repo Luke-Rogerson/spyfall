@@ -1,8 +1,10 @@
 <div class="player-list">
   <h2>PLAYERS</h2>
-  <div *ngIf="players.length">
+  <div class="player-list__list" *ngIf="players.length">
+    <ul>
     <li *ngFor="let player of players">
       {{player}}
     </li>
+  </ul>
   </div>
 </div>

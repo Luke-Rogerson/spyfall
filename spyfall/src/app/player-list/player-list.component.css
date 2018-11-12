@@ -5,3 +5,33 @@
   flex-direction: column;
 }
 
+.player-list__list{
+  width:350px;
+  margin:0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .player-list__list ul{
+  counter-reset: li;
+  list-style: none;
+  *list-style: decimal;
+  font-size: 15px;
+  padding: 0;
+  margin-bottom: 4em;
+  column-count: 2;
+  column-gap: 80px;
+  column-rule-style: solid;
+  column-rule-width: 1px;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  }
+
+  .player-list__list ul ul{
+  margin: 0 0 0 2em;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
