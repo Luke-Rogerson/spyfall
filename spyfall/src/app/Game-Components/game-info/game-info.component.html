@@ -1,13 +1,21 @@
-<div *ngIf="role!=='Spy'" class="notSpy">
-  <h2>You are <u>not</u> the spy!</h2>
-  <h3><b>Location:</b> {{this.location}}</h3>
-  <h3><b>Role:</b> {{this.role}}</h3>
+<div class="game-info">
+  <h3 class="timer" *ngIf="timeRemaining">{{timeRemaining}}</h3>
+  <div *ngIf="role!=='Spy'" class="notSpy">
+    <h2>You are <u>not</u> the spy!</h2>
+    <div class="loc-and-role">
+      <h3>
+        <div id="loc-and-role__loc"><b>Location </b></div> {{this.location}}
+      </h3>
+      <h3>
+        <div id="loc-and-role__role"><b>Role </b></div> {{this.role}}
+      </h3>
+    </div>
+  </div>
+
+  <div *ngIf="role==='Spy'" class="spy">
+    <h2>You <u>are</u> the spy!</h2>
+    <h3>
+      <div><b>Location </b></div> ???
+    </h3>
+  </div>
 </div>
-
-
-<div *ngIf="role==='Spy'" class="spy">
-  <h2>You <u>are</u> the spy!</h2>
-  <h3><b>Location:</b> ???</h3>
-</div>
-
-

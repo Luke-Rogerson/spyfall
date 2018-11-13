@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/websocket.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-game-info',
@@ -10,12 +11,18 @@ export class GameInfoComponent implements OnInit {
 
   role: string;
   location: string;
-
+  timeRemaining = '08:00';
 
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
     this.getRoleAndLocation();
+    this.wsService
+      .remainingTime().subscribe((res) => {
+        this.timeRemaining = moment().startOf('day')
+                                     .seconds(res.timeRemaining)
+                                     .format('mm:ss');
+      });
   }
 
    async getRoleAndLocation() {

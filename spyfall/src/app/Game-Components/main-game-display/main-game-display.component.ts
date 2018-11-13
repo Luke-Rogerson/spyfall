@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WebsocketService } from 'src/app/websocket.service';
 
 @Component({
   selector: 'app-main-game-display',
@@ -8,15 +7,9 @@ import { WebsocketService } from 'src/app/websocket.service';
 })
 export class MainGameDisplayComponent implements OnInit {
 
-  roomID: string;
-
-  constructor(private wsService: WebsocketService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.wsService
-    .getRoomID().subscribe((roomID: string) => {
-      this.roomID = roomID;
-    });
   }
 
 }

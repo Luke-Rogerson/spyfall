@@ -1,0 +1,37 @@
+.game-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 350px;
+}
+
+.loc-and-role {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+b {
+  color: rgb(245, 111, 9);
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  margin: 0;
+  padding: 0px, 25px;
+}
+
+.notSpy .spy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timer {
+  margin: 0;
+}

@@ -1,5 +1,9 @@
 .location-list {
   width: 350px;
+  height: 365px;
+  background: #e35e5e;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
 ol {
@@ -22,10 +26,12 @@ li {
   width: 100px;
   border: solid 1px white;
   list-style-type: none;
+  border-radius: 3px;
 }
 
 h2 {
   margin: 0;
-  padding: 0;
+  padding: 6px;
   text-align: center;
+  /* margin-bottom: 10px; */
 }
