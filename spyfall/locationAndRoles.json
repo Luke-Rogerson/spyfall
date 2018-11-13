@@ -72,15 +72,6 @@
       "Accountant",
       "Delivery Boy"
     ],
-    "Crusader Army": [
-      "Monk",
-      "Imprisoned Arab",
-      "Servant",
-      "Bishop",
-      "Squire",
-      "Archer",
-      "Knight"
-    ],
     "Day Spa": [
       "Customer",
       "Stylist",
@@ -89,15 +80,6 @@
       "Makeup Artist",
       "Dermatologist",
       "Beautician"
-    ],
-    "Embassy": [
-      "Security Guard",
-      "Secretary",
-      "Ambassador",
-      "Government Official",
-      "Tourist",
-      "Refugee",
-      "Diplomat"
     ],
     "Hospital": [
       "Nurse",
@@ -116,24 +98,6 @@
       "Customer",
       "Bartender",
       "Bellman"
-    ],
-    "Military Base": [
-      "Deserter",
-      "Colonel",
-      "Medic",
-      "Soldier",
-      "Sniper",
-      "Officer",
-      "Tank Engineer"
-    ],
-    "Movie Studio": [
-      "Stuntman",
-      "Sound Engineer",
-      "Cameraman",
-      "Director",
-      "Costume Artist",
-      "Actor",
-      "Producer"
     ],
     "Ocean Liner": [
       "Rich Passenger",
@@ -162,15 +126,6 @@
       "Cabin Boy",
       "Brave Captain"
     ],
-    "Polar Station": [
-      "Medic",
-      "Geologist",
-      "Expedition Leader",
-      "Biologist",
-      "Radioman",
-      "Hydrologist",
-      "Meteorologist"
-    ],
     "Police Station": [
       "Detective",
       "Lawyer",
@@ -198,15 +153,6 @@
       "Lunch Lady",
       "Maintenance Man"
     ],
-    "Service Station": [
-      "Manager",
-      "Tire Specialist",
-      "Biker",
-      "Car Owner",
-      "Car Wash Operator",
-      "Electrician",
-      "Auto Mechanic"
-    ],
     "Space Station": [
       "Engineer",
       "Alien",
@@ -215,15 +161,6 @@
       "Commander",
       "Scientist",
       "Doctor"
-    ],
-    "Submarine": [
-      "Cook",
-      "Commander",
-      "Sonar Technician",
-      "Electronics Technician",
-      "Sailor",
-      "Radioman",
-      "Navigator"
     ],
     "Supermarket": [
       "Customer",
