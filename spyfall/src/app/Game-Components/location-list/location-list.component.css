@@ -1,7 +1,8 @@
 .location-list {
   width: 350px;
   height: 365px;
-  background: #e35e5e;
+  /* background: #e35e5e; */
+  background: rgb(208, 129, 70);
   border-radius: 15px;
   margin-top: 10px;
 }

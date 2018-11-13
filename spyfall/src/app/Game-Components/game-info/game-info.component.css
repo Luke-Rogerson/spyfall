@@ -5,6 +5,8 @@
   align-content: center;
   text-align: center;
   width: 350px;
+  border-radius: 15px;
+  background: #4a4747;
 }
 
 .loc-and-role {
@@ -19,11 +21,13 @@ b {
 h2 {
   margin: 0;
   padding: 0;
+  font-size: 35px;
 }
 
 h3 {
   margin: 0;
   padding: 0px, 25px;
+  font-size: 25px;
 }
 
 .notSpy .spy {
@@ -34,4 +38,5 @@ h3 {
 
 .timer {
   margin: 0;
+  font-size: 30px;
 }
