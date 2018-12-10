@@ -2,7 +2,7 @@
 
 Spyfall is a game of intrigue, deception and silly questions! It's a lot of fun for groups of 3-7 people!
 
-# Screenshots
+## Screenshots
 <p align="center" >
   <img src="screenshots/spyfall1.png" height="450"/>
   <img src="screenshots/spyfall2.png" height="450"/>
@@ -10,7 +10,7 @@ Spyfall is a game of intrigue, deception and silly questions! It's a lot of fun 
   <img src="screenshots/spyfall4.png" height="450"/>
 </p>
 
-# Instructions
+## Instructions
 _You are all on the same team, except for one person who is chosen to be a spy. You only know who you are! You have
 no idea about anyone else._    
     
@@ -20,7 +20,7 @@ what it can be. Whoever has been asked will be the next asker, and he/she can ch
 _When the time runs out, the spy should reveal themself, and take a guess at the location. If he's correct, he wins. Otherwises, he loses immediately. After that the team will vote for who they think is a spy. If the majority of them vote
 for the wrong person, the spy wins. Otherwise the team wins._    
     
-# Installation
+## Installation
 **Make sure you have Git, Node and npm installed before going further!**
 
 1. Clone the repo and enter!
