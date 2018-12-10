@@ -8,12 +8,6 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = socketIO(server);
 const rooms = {};
-const testRoom = {
-  '7888':
-    [{ aaaaa: 's4A1B2ZDk-c96YtsAAAD' },
-    { bbbb: 'rZe_Rdb8U_j-iwyTAAAE' }]
-}
-const rooms2 = { 9700: [{ Luke: 'yA33KLKnNAlG9EyHAAAD' }, { Bob: 'yA33KLKnNAlG9EyHAAAD' }] };
 
 const locationsAndRoles = require('./locationAndRoles.json');
 
@@ -22,17 +16,15 @@ io.on('connection', (socket) => {
 
   socket.on('create', (data) => {
     socket.join(data.id);
-    //socket.roomID = data.id;
     rooms[data.id] = [{ [data.name]: socket.id }];
 
     console.log(`${data.name} has joined room "${data.id}".`)
-    //console.log('ROOMS NOW: ', rooms);
+
     socket.emit('roomID', data.id);
     socket.emit('currentPlayers', {
       players: rooms[data.id].map(el => Object.keys(el)),
       roomID: data.id
     });
-    console.log('ROOMS: ', rooms);
 
   });
 
@@ -67,7 +59,6 @@ io.on('connection', (socket) => {
     const newLocationAndRoles = getRandomLocationAndRoles();
     // For each shuffled player, send an object containing role and location
     for (let i = 0; i < shuffledPlayers.length; i++) {
-      console.log('ROLES: ', shuffledPlayers[i]);
       io.to((Object.values(shuffledPlayers[i])).toString()).emit('roleAndLocation', newLocationAndRoles[i]);
     }
     // Emit time left to all players in room
@@ -78,10 +69,9 @@ io.on('connection', (socket) => {
       if (timeRemaining === 0) clearInterval(intervalID);
       timeRemaining -= 1;
     }, 1000);
-  })
+  });
 
   socket.on('disconnect', () => {
-    // delete rooms.roo
     console.log('Connection ended');
   });
 })
